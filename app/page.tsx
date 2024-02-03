@@ -6,8 +6,10 @@ import { useState, useEffect, JSXElementConstructor, Key, PromiseLikeOfReactNode
 import { useRouter } from 'next/navigation';
 import Navbar from "./components/navbar";
 import axios from "axios";
-import { FaRegEdit } from "react-icons/fa";
-import { MdDelete } from "react-icons/md";
+import { CiEdit } from "react-icons/ci";
+import { MdDelete, MdDeleteForever } from "react-icons/md";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { IoIosAdd } from "react-icons/io";
 
 export default function Home() {
 
@@ -356,133 +358,42 @@ export default function Home() {
         <Navbar/>
       </div>
 
-      <div className="flex w-full flex-col justify-center items-center bg-white">
+      <div className="flex w-full flex-col justify-center items-center bg-[#F9FEF6]">
 
-        <div className='w-full bg-gray-300 flex justify-center items-center mb-8'>
-          <div className='w-full xl:w-[1280px] bg-gray-300 px-8 lg:px-60'>
+        <div className='w-full bg-[#F9FEF6] flex justify-center items-center mb-[8px]'>
+          <div className='w-full xl:w-[1280px] bg-[#F9FEF6] px-8 lg:px-40'>
             {/* Add Buttons */}
-            <div className="w-full pt-[90px] md:pt-[130px] lg:pt-[110px] mb-[25px] flex justify-end">
+            <div className="w-full pt-[90px] md:pt-[130px] lg:pt-[128px] mb-[32px] flex justify-start">
               <div 
-                className="shadow-md bg-[#26a9e1] hover:bg-[#003566] text-black hover:text-white hover:font-semibold duration-500 px-4 py-2 rounded-xl"
+                className="shadow-md bg-[#003366] hover:bg-[#000E30] text-white text-body1 hover:text-white hover:font-semibold duration-500 px-[16px] py-[12px] rounded-[4px] flex items-center"
                 onClick={() => setShowModal(true)}
               >
+                <IoIosAdd 
+                className="icon mr-[8px]"
+                style={{ height: '24px', width: '24px' }}
+                color="white"/>
                 Add Book
               </div>
               <div
-                className="shadow-md bg-[#26a9e1] hover:bg-[#003566] text-black hover:text-white hover:font-semibold duration-500 px-4 py-2 rounded-xl ml-4"
+                className="shadow-md bg-[#003366] hover:bg-[#000E30] text-white text-body1 hover:text-white hover:font-semibold duration-500 px-[16px] py-[12px] rounded-[4px] ml-4 flex"
                 onClick={() => setShowModalCategory(true)}
               >
+                <IoIosAdd 
+                className="icon mr-[8px]"
+                style={{ height: '24px', width: '24px' }}
+                color="white"/>
                 Add Category
               </div>
-            </div>
-            
-            <div className='mb-8 flex flex-col md:grid md:grid-cols-3 md:gap-4'>
-              <div>
-                {/* Search Title */}
-                <div className="mb-3 flex flex-col">
-                  <div className="font-semibold text-sm mb-2">
-                    Search
-                  </div>
-                  <input
-                    type="text"
-                    value={searchTitle}
-                    onChange={(e) => setSearchTitle(e.target.value)}
-                    className="form-control shadow-md h-[40px] pl-4 rounded-md border-1"
-                    id="searchTitle"
-                    placeholder="Book Title"
-                    required
-                  />
-                </div>
-              </div>
-              
-              <div>
-                {/* Search Min Year */}
-                <div className="mb-3 flex flex-col">
-                  <div className="font-semibold text-sm mb-2">
-                    Min Year
-                  </div>
-                  <input
-                    type="text"
-                    value={minYear}
-                    onChange={(e) => setMinYear(e.target.value)}
-                    className="form-control shadow-md h-[40px] pl-4 rounded-md border-1"
-                    id="minYear"
-                    placeholder="Min Year"
-                    required
-                  />
-                </div>
-              </div>
-              
-              <div>
-                {/* Search Max Year */}
-                <div className="mb-3 flex flex-col">
-                  <div className="font-semibold text-sm mb-2">
-                    Max Year
-                  </div>
-                  <input
-                    type="text"
-                    value={maxYear}
-                    onChange={(e) => setMaxYear(e.target.value)}
-                    className="form-control shadow-md h-[40px] pl-4 rounded-md border-1"
-                    id="maxYear"
-                    placeholder="Max Year"
-                    required
-                  />
-                </div>
-              </div>
-              
-              <div>
-                {/* Search Min Page */}
-                <div className="mb-3 flex flex-col">
-                  <div className="font-semibold text-sm mb-2">
-                    Min Page
-                  </div>
-                  <input
-                    type="text"
-                    value={minPage}
-                    onChange={(e) => setMinPage(e.target.value)}
-                    className="form-control shadow-md h-[40px] pl-4 rounded-md border-1"
-                    id="minPage"
-                    placeholder="Min Page"
-                    required
-                  />
-                </div>
-              </div>
-              
-              <div>
-                {/* Search Max Page */}
-                <div className="mb-3 flex flex-col">
-                  <div className="font-semibold text-sm mb-2">
-                    Max Page
-                  </div>
-                  <input
-                    type="text"
-                    value={maxPage}
-                    onChange={(e) => setMaxPage(e.target.value)}
-                    className="form-control shadow-md h-[40px] pl-4 rounded-md border-1"
-                    id="maxPage"
-                    placeholder="Max Page"
-                    required
-                  />
-                </div>
-              </div>
-              <button
-                className="rounded-2xl bg-[#26a9e1] w-full hover:bg-[#003566] text-black hover:text-white  font-bold uppercase text-sm px-6 py-3 shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                type="button"
-                onClick={handleFilter}
-              >
-                Search
-              </button>
             </div>
           </div>
         </div>
 
         {/* Category Card */}
-        <div className='w-full xl:w-[1280px] font-semibold px-8 lg:px-60 mb-4 text-xl'>
+        <div className='w-full xl:w-[1280px] font-semibold text-h6 text-[#404252] px-8 lg:px-40 mb-[8px]'>
           Category Lists
         </div>
 
-        <div className="bg-white w-full xl:w-[1280px] h-full pb-8 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 px-8 lg:px-60">
+        <div className="bg-[#F9FEF6] w-full xl:w-[1280px] h-full mb-[40px] grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 px-8 lg:px-40">
 
           {
             dataCategories != null &&
@@ -490,23 +401,28 @@ export default function Home() {
             {
               dataCategories.map((item: { id:any, name: string;}, index: any) => {
                 return (
-                  <div key={index} className="flex flex-col bg-gray-200 justify-center items-center shadow-md hover:shadow-lg rounded-md duration-300">
-                    <div className='flex w-full justify-between py-2 px-4'>
-                      <div className="text-center">
+                  <div key={index} className="flex flex-col bg-white justify-center items-center shadow-md hover:shadow-lg rounded-[4px] duration-300">
+                    <div className='flex w-full justify-between py-[16px] px-[16px]'>
+                      <div className="text-center text-[#404252]">
                         {item.name}
                       </div>
                       <div className="w-full flex justify-end">
                         <div 
                           onClick={() => handleOpenEditCategory(item.id, item.name)} 
-                          className="w-fit rounded-sm"
+                          className="w-fit rounded-[4px]"
                         >
-                          <FaRegEdit className='h-[20px] w-[20px]'/>
+                          <CiEdit 
+                          className="icon mr-[4px]"
+                          style={{ height: '24px', width: '24px' }}
+                          color="#F9E24E"/>
                         </div>
                         <div 
-                          onClick={() => handleOpenDeleteCategory(item.id)} 
-                          className="ml-2 rounded-sm"
+                          onClick={() => handleOpenDeleteCategory(item.id)}
                         >
-                          <MdDelete className='h-[20px] w-[20px]'/>
+                          <MdDeleteForever
+                          className="icon"
+                          style={{ height: '24px', width: '24px' }}
+                          color="#FF687C"/>
                         </div>
                       </div>
                     </div>
@@ -519,20 +435,119 @@ export default function Home() {
         </div>
 
         {/* Card Container */}
-        <div className='w-full xl:w-[1280px] font-semibold px-8 lg:px-60 mb-4 text-xl'>
+        <div className='w-full xl:w-[1280px] font-semibold px-8 lg:px-40 mb-[16px] text-h6 text-[#404252]'>
           Book Lists
+        </div>
+        
+        <div className='w-full xl:w-[1280px] px-8 lg:px-40 mb-[32px] flex flex-col md:grid md:grid-cols-3 md:gap-4'>
+          <div>
+            {/* Search Title */}
+            <div className="flex flex-col">
+              <div className="text-[#404252] font-medium text-body2 text-[#404252] mb-[4px]">
+                Search
+              </div>
+              <input
+                type="text"
+                value={searchTitle}
+                onChange={(e) => setSearchTitle(e.target.value)}
+                className="form-control shadow-md h-[40px] pl-4 rounded-md border-1 text-body2 font-light"
+                id="searchTitle"
+                placeholder="ex: laskar pelangi"
+                required
+              />
+            </div>
+          </div>
+          
+          <div>
+            {/* Search Min Year */}
+            <div className="flex flex-col">
+              <div className="text-[#404252] font-medium text-body2 text-[#404252] mb-[4px]">
+                Minimum Year Release
+              </div>
+              <input
+                type="text"
+                value={minYear}
+                onChange={(e) => setMinYear(e.target.value)}
+                className="form-control shadow-md h-[40px] pl-4 rounded-md border-1 text-body2 font-light"
+                id="minYear"
+                placeholder="ex: 1990"
+                required
+              />
+            </div>
+          </div>
+          
+          <div>
+            {/* Search Max Year */}
+            <div className="flex flex-col">
+              <div className="text-[#404252] font-medium text-body2 text-[#404252] mb-[4px]">
+                Maximum Year Release
+              </div>
+              <input
+                type="text"
+                value={maxYear}
+                onChange={(e) => setMaxYear(e.target.value)}
+                className="form-control shadow-md h-[40px] pl-4 rounded-md border-1 text-body2 font-light"
+                id="maxYear"  
+                placeholder="ex: 2024"
+                required
+              />
+            </div>
+          </div>
+          
+          <div>
+            {/* Search Min Page */}
+            <div className="flex flex-col">
+              <div className="text-[#404252] font-medium text-body2 text-[#404252] mb-[4px]">
+                Minimum Page
+              </div>
+              <input
+                type="text"
+                value={minPage}
+                onChange={(e) => setMinPage(e.target.value)}
+                className="form-control shadow-md h-[40px] pl-4 rounded-md border-1 text-body2 font-light"
+                id="minPage"
+                placeholder="ex: 100"
+                required
+              />
+            </div>
+          </div>
+          
+          <div>
+            {/* Search Max Page */}
+            <div className="flex flex-col">
+              <div className="text-[#404252] font-medium text-body2 text-[#404252] mb-[4px]">
+                Maximum Page
+              </div>
+              <input
+                type="text"
+                value={maxPage}
+                onChange={(e) => setMaxPage(e.target.value)}
+                className="form-control shadow-md h-[40px] pl-4 rounded-md border-1 text-body2 font-light"
+                id="maxPage"
+                placeholder="ex: 500"
+                required
+              />
+            </div>
+          </div>
+          <button
+            className="rounded-[4px] h-[40px] mt-auto bg-[#003366] w-[144px] hover:bg-[#000E30] text-white hover:text-white text-body2  font-medium shadow hover:shadow-lg outline-none focus:outline-none ease-linear transition-all duration-150"
+            type="button"
+            onClick={handleFilter}
+          >
+            Search
+          </button>
         </div>
         <div>
           {/* Sort Filters */}
-          <div className="w-full xl:w-[1280px] px-8 lg:px-60 mb-8 flex">
+          <div className="w-full xl:w-[1280px] px-8 lg:px-40 mb-[32px] flex">
             <div 
-              className="shadow-md bg-gray-300 hover:bg-[#003566] text-black hover:text-white hover:font-semibold duration-500 px-4 py-2 rounded-xl"
+              className="shadow-md bg-white hover:bg-[#003566] text-black hover:text-white hover:font-semibold duration-500 px-[16px] py-[12px] rounded-[4px]"
               onClick={handleAscending}
             >
               Ascending
             </div>
             <div
-              className="shadow-md bg-gray-300 hover:bg-[#003566] text-black hover:text-white hover:font-semibold duration-500 px-4 py-2 rounded-xl ml-4"
+              className="shadow-md bg-white hover:bg-[#003566] text-black hover:text-white hover:font-semibold duration-500 px-[16px] py-[12px] rounded-[4px] ml-4"
               onClick={handleDescending}
             >
               Descending
@@ -540,7 +555,7 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="bg-white w-full xl:w-[1280px] h-full pb-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 px-8 lg:px-60">
+        <div className="bg-[#F9FEF6] w-full xl:w-[1280px] h-full pb-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 px-8 lg:px-40">
 
           {/* Card */}
           {
@@ -549,24 +564,10 @@ export default function Home() {
             {
               dataBooks.map((item: { id:any, title: string; description: string; image_url: any; release_year: string; price: string; total_page: any; thickness: string; category_id: any }, index: any) => {
                 return (
-                  <div key={index} className="flex flex-col bg-gray-200 justify-center items-center shadow-md hover:shadow-2xl rounded-md duration-300">
-                    <div className="w-full flex justify-end px-4 mt-4">
-                      <div 
-                        onClick={() => handleOpenEdit(item.id, item.title, item.description, item.image_url, item.price, item.release_year, item.total_page)} 
-                        className="w-fit rounded-sm"
-                      >
-                        <FaRegEdit className='h-[20px] w-[20px]'/>
-                      </div>
-                      <div 
-                        onClick={() => handleOpenDelete(item.id)} 
-                        className="ml-2 rounded-sm"
-                      >
-                        <MdDelete className='h-[20px] w-[20px]'/>
-                      </div>
-                    </div>
+                  <div key={index} className="flex flex-col bg-white shadow-md hover:shadow-2xl rounded-[4px] duration-300">
                     <div className="w-full h-full flex justify-center items-center mt-4">
                       <Image
-                        className="rounded-xl px-4"
+                        className="rounded-xl px-[16px]"
                         src={`https://sanbook-production.up.railway.app/storage/books/${item.image_url}`}
                         width={100}
                         height={100}
@@ -574,11 +575,28 @@ export default function Home() {
                         alt="Book"
                       />
                     </div>
-                    <div className="mt-4 text-center">
+                    <div className="mt-[16px] mx-[16px] text-body1 text-[#404252]">
                       {item.title}
                     </div>
-                    <div className="mt-1 mb-4">
+                    <div className="mt-[4px] mx-[16px] text-body2 text-[#B3B5BD]">
                       {item.release_year}
+                    </div>
+                    <div className="mt-[4px] mx-[16px] mb-[16px] text-h6 text-[#B39C27]">
+                      {item.price}
+                    </div>
+                    <div className="w-full">
+                      <div 
+                        onClick={() => handleOpenEdit(item.id, item.title, item.description, item.image_url, item.price, item.release_year, item.total_page)} 
+                        className="text-center text-body1 text-white bg-[#F9E24E] cursor-pointer py-[4px]"
+                      >
+                        Edit
+                      </div>
+                      <div 
+                        onClick={() => handleOpenDelete(item.id)} 
+                        className="text-center text-body1 text-white bg-[#FF687C] rounded-b-[4px] cursor-pointer py-[4px]"
+                      >
+                        Delete
+                      </div>
                     </div>
                   </div>
                 )

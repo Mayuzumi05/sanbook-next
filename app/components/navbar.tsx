@@ -5,7 +5,6 @@ import { useState } from 'react'
 import { useRouter } from 'next/navigation';
 import { IoEllipsisHorizontal } from "react-icons/io5"; 
 import { FaEllipsisVertical } from "react-icons/fa6";
-import { CiLogout } from "react-icons/ci";
 
 const navbar = () => {
     
@@ -33,7 +32,7 @@ const navbar = () => {
     <div
       className='shadow w-full fixed flex items-center justify-center z-50 h-[70px] md:h-[100px] lg:h-[80px] xl:h-[80px]'
       style={{
-        backgroundColor: 'white',
+        backgroundColor: '#F9FEF6',
       }}
     >
       <div className='w-full xl:w-[1280px]'>
@@ -47,7 +46,7 @@ const navbar = () => {
                     src={'/logo-horizontal.png'}
                     width={500}
                     height={500}
-                    style={{ height: '75px', width: 'auto' }}
+                    style={{ height: '48px', width: 'auto' }}
                     alt="Book"
                 />
             </Link>
@@ -63,17 +62,16 @@ const navbar = () => {
           {/* Linked items */}
           <div 
             className={`
-              md:flex md:items-center md:pb-0 pb-4 absolute md:static 
+              md:flex md:items-center md:pb-0 absolute md:static 
               left-0 w-full z-0
               md:w-auto md:pl-0
               ${open ? 'top-16' : 'top-[-490px]'}
-              bg-white
+              bg-[#F9FEF6]
             `}
           >
             <div className='text-xl mx-8 md:mx-0 mt-6 md:items-center md:text-center md:gap-4 flex flex-col md:flex-row md:ml-8 md:my-0 font-semibold'>
-                <div onClick={handleLogout} className='hover:bg-gray-200 md:hover:bg-gray-200 rounded-full py-2 px-8 md:px-4 mb-4 md:mb-0 text-[#003566] hover:text-[#26a9e1] duration-500 flex justify-center items-center gap-2'>
-                  <CiLogout className=''/>
-                  <div>Logout</div>
+                <div onClick={handleLogout} className='hover:bg-gray-200 md:hover:bg-gray-200 rounded-full py-2 px-8 md:px-4 md:mb-0 text-[#003566] hover:text-[#26a9e1] duration-500 flex justify-center items-center gap-2'>
+                  <div className='text-body1' >Logout</div>
                 </div>
             </div>
             <hr/>
